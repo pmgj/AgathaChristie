@@ -1,0 +1,144 @@
+body {
+  padding: 0.5em 0;
+  margin: 0;
+  font: 0.8em/1.5em 'Trebuchet MS', Verdana, 'Bitstream Vera Sans', 'Luxi Sans', sans-serif;
+}
+/*object {
+  margin: 0 0 -5px 0;
+  padding: 0;
+  color: inherit;
+  background-color: #cbd1c3;
+}
+h1 {
+  letter-spacing: 0.2em;
+  text-align: center;
+  margin: 1em 0;
+  color: #3d492b;
+  background-color: inherit;
+}*/
+h1 {
+  margin: 0;
+}
+h2, h3 {
+  text-indent: 20px;
+  color: #434343;
+  background-color: inherit;
+}
+h2 {
+  margin: 0.3em 0 0 0;
+  font-weight: bold;
+  font-size: 1.55em;
+  text-transform: uppercase;
+}
+h3 {
+  margin: 0.1em 0 0 0;
+  font-weight: normal;
+  font-size: 1.35em;
+  text-transform: capitalize;
+}
+h4 {
+  font-weight: bold;
+  font-size: 1em;
+}
+h2, h3, h4 {
+  font-family: Georgia, Garamond, 'Bitstream Vera Serif', 'Luxi Serif', serif;
+}
+p {
+  text-align: justify;
+  margin: 1em 0 0 0;
+}
+hr {
+  clear: both;
+  margin: 0.5em 0 -0.5em 0;
+}
+#container {
+  border: 1px solid #545454;
+  width: 611px;
+  margin: 0 auto;
+}
+#content {
+  padding: 0 1em 1em 1em;
+}
+#content img {
+  border: 1px solid #828282;
+  padding: 3px;
+  float: right;
+  margin: 0 0 0.5em 0.8em;
+}
+#hMenu {
+  border: solid #545454;
+  border-width: 1px 0;
+  color: inherit;
+  background-color: #cbd1c3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+#hMenu li {
+  display: inline;
+  padding: 0 1em 0 1em;
+}
+#hMenu li a {
+  color: #000;
+  background-color: inherit;
+  font: bold 1.07em/1.9em Georgia, Garamond, 'Bitstream Vera Serif', 'Luxi Serif', serif;
+  text-decoration: none;
+  padding: 0.3em 0.6em;
+}
+#hMenu li a:hover {
+  text-decoration: none;
+  color: inherit;
+  background-color: #e1e5db;
+}
+a {
+  color: #3d492b;
+  background-color: inherit;
+}
+#copyright {
+  border-top: 1px solid #545454;
+  text-align: right;
+  color: #3d492b;
+  background-color: #b6c5a3;
+  padding: 0.5em 1em 0.6em 0.5em;
+}
+#copyright p {
+  font: 0.85em Verdana, Tahoma, 'Bitstream Vera Sans', 'Luxi Sans', sans-serif;
+  text-align: right;
+  margin: 0.4em 0 0.4em 0;
+}
+#botoes {
+  margin: 0;
+  padding: 0;
+}
+#botoes li {
+  display: inline;
+}
+#botoes li:before {
+  content: " | ";
+}
+#botoes li:first-child:before {
+  content: " ";
+}
+table {
+  margin-top: 1em;
+}
+td, th, table {
+  border-collapse: collapse;
+  border: black solid 1px;
+}
+th {
+  width: 45%;
+  color: black;
+  background-color: #b6c5a3;
+  text-transform: uppercase;
+}
+th + th {
+  width: 10%
+}
+th + th + th {
+  width: 10%
+}
+th + th + th + th {
+  width: 35%
+}
