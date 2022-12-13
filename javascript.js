@@ -17,11 +17,11 @@ function topo() {
       '<h1>Agatha Christie</h1>'+
     '</object>'+*/
     '<ul id="hMenu">' +
-    '<li><a href="index.xhtml">HOME</a></li>' +
-    '<li><a href="biografia.xhtml">BIOGRAFIA</a></li>' +
-    '<li><a href="livros.xhtml">LIVROS</a></li>' +
-    '<li><a href="links.xhtml">LINKS</a></li>' +
-    '<li><a href="personagens.xhtml">PERSONAGENS</a></li>' +
+    '<li><a href="index.html">HOME</a></li>' +
+    '<li><a href="biografia.html">BIOGRAFIA</a></li>' +
+    '<li><a href="livros.html">LIVROS</a></li>' +
+    '<li><a href="links.html">LINKS</a></li>' +
+    '<li><a href="personagens.html">PERSONAGENS</a></li>' +
     '</ul>';
   var body = document.getElementById("container");
   body.innerHTML = string + body.innerHTML;
