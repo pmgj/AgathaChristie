@@ -12,7 +12,7 @@ function dataDocumento() {
 }
 function topo() {
   var string = '' +
-    '<h1><img src="imagens/topo.jpg" alt="Agatha Christie" /></h1>' +
+    '<h1><img src="imagens/topo.jpg" alt="Agatha Christie"></h1>' +
     /*'<object data="imagens/topo.jpg" type="image/jpg">'+
       '<h1>Agatha Christie</h1>'+
     '</object>'+*/
@@ -45,12 +45,11 @@ function rodape() {
 function openWin() {
   var img = this.getAttribute("href");
   var title = this.firstChild.nodeValue.toUpperCase();
-  var pagina = '<?xml version="1.0" encoding="UTF-8"?>' +
-    '<!DOCTYPE html>' +
-    '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt"><head><title>' + title + '</title></head>' +
-    '<body style="padding: 0; margin: 0;">' +
-    '<div><img src="' + img + '" alt="Foto de ' + title + '" onload="javascript:resizeTo(this.width+9,this.height+57)" />' +
-    '</div></body></html>';
+  var pagina = `<!DOCTYPE html>`
+    `<html lang="pt"><head><title>${title}</title></head>`
+    `<body style="padding: 0; margin: 0;">`
+    `<div><img src="${img}" alt="Foto de ${title}" onload="javascript:resizeTo(this.width+9,this.height+57)">`
+    `</div></body></html>`;
   var janela = open('', 'foto', 'width=100,height=100,resizable=yes');
   janela.document.write(pagina);
   janela.document.close();
