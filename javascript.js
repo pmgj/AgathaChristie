@@ -5,19 +5,19 @@ function dataDocumento() {
 }
 function topo() {
   let string = '' +
-    '<h1><img src="imagens/topo.jpg" alt="Agatha Christie"></h1>' +
-    '<ul id="hMenu">' +
+    '<header><img src="imagens/topo.jpg" alt="Agatha Christie"></header>' +
+    '<nav><ul>' +
     '<li><a href="index.html">HOME</a></li>' +
     '<li><a href="biografia.html">BIOGRAFIA</a></li>' +
     '<li><a href="livros.html">LIVROS</a></li>' +
     '<li><a href="links.html">LINKS</a></li>' +
     '<li><a href="personagens.html">PERSONAGENS</a></li>' +
-    '</ul>';
+    '</ul></nav>';
   let body = document.getElementById("container");
   body.innerHTML = string + body.innerHTML;
 }
 function rodape() {
-  let string = `<div id="copyright"><p>E-mail: <a href="mailto:paulomgj@gmail.com">paulomgj@gmail.com</a></p><p>${dataDocumento()}</p></div>`;
+  let string = `<footer><p>E-mail: <a href="mailto:paulomgj@gmail.com">paulomgj@gmail.com</a></p><p>${dataDocumento()}</p></footer>`;
   var body = document.getElementById("container");
   body.innerHTML += string;
 }
