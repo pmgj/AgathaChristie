@@ -1,4 +1,4 @@
-body {
+html {
   padding: 0.5em 0;
   margin: 0;
   font: 1em/1.5em 'Trebuchet MS', Verdana, 'Bitstream Vera Sans', 'Luxi Sans', sans-serif;
@@ -45,7 +45,7 @@ hr {
   margin: 0.5em 0 -0.5em 0;
 }
 
-#container {
+body {
   border: 1px solid #545454;
   width: 611px;
   margin: 0 auto;

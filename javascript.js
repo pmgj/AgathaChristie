@@ -4,22 +4,26 @@ function dataDocumento() {
   return `Última atualização em ${lastModDate.toLocaleDateString('pt-br', options)}`;
 }
 function topo() {
-  let string = '' +
-    '<header><img src="imagens/topo.jpg" alt="Agatha Christie"></header>' +
-    '<nav><ul>' +
+  let container = document.querySelector("body");
+  let main = document.querySelector("main");
+  let header = document.createElement("header");
+  header.innerHTML = '<header><img src="imagens/topo.jpg" alt="Agatha Christie"></header>';
+  container.insertBefore(header, main);
+  let nav = document.createElement("nav");
+  nav.innerHTML = '<nav><ul>' +
     '<li><a href="index.html">HOME</a></li>' +
     '<li><a href="biografia.html">BIOGRAFIA</a></li>' +
     '<li><a href="livros.html">LIVROS</a></li>' +
     '<li><a href="links.html">LINKS</a></li>' +
     '<li><a href="personagens.html">PERSONAGENS</a></li>' +
     '</ul></nav>';
-  let body = document.getElementById("container");
-  body.innerHTML = string + body.innerHTML;
-}
+    container.insertBefore(nav, main);
+  }
 function rodape() {
-  let string = `<footer><p>E-mail: <a href="mailto:paulomgj@gmail.com">paulomgj@gmail.com</a></p><p>${dataDocumento()}</p></footer>`;
-  var body = document.getElementById("container");
-  body.innerHTML += string;
+  let footer = document.createElement("footer");
+  footer.innerHTML = `<p>E-mail: <a href="mailto:paulomgj@gmail.com">paulomgj@gmail.com</a></p><p>${dataDocumento()}</p>`;
+  let container = document.querySelector("body");
+  container.appendChild(footer);
 }
 function openWin() {
   let img = this.getAttribute("href");
