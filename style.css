@@ -8,7 +8,6 @@ h2,
 h3 {
   text-indent: 20px;
   color: #434343;
-  background-color: inherit;
 }
 
 h2 {
@@ -70,7 +69,6 @@ nav {
 nav ul {
   border: solid #545454;
   border-width: 1px 0;
-  color: inherit;
   background-color: #cbd1c3;
   margin: 0;
   padding: 0;
@@ -85,7 +83,6 @@ nav ul li {
 
 nav ul li a {
   color: #000;
-  background-color: inherit;
   font: bold 1.07em/1.9em Georgia, Garamond, 'Bitstream Vera Serif', 'Luxi Serif', serif;
   text-decoration: none;
   padding: 0.3em 0.6em;
@@ -93,13 +90,11 @@ nav ul li a {
 
 nav ul li a:hover {
   text-decoration: none;
-  color: inherit;
   background-color: #e1e5db;
 }
 
 a {
   color: #3d492b;
-  background-color: inherit;
 }
 
 footer {
