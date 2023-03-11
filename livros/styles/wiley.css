@@ -1,0 +1,164 @@
+@import 'https://fonts.googleapis.com/css?family=EB+Garamond';
+@page capitulo :first {
+    @top-left {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @top-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-right {
+        content: counter(page, decimal);
+        font-weight: bold;
+    }
+}
+@page capitulo :left {
+    @top-left {
+        content: counter(page);
+        font-weight: bold;
+        padding-bottom: 5pt;
+        border-bottom: 0.5pt solid black;
+        vertical-align: bottom;
+        margin-bottom: 10pt;
+    }
+}
+@page capitulo :left {
+    @top-right {
+        content: "Capítulo " counter(chapter) " " string(chapter);
+        padding-bottom: 5pt;
+        border-bottom: 0.5pt solid black;
+        vertical-align: bottom;        
+        margin-bottom: 10pt;
+    }
+}
+@page capitulo :right {
+    @top-left {
+        content: counter(chapter) "." counter(section) " " string(sectionname);
+        padding-bottom: 5pt;
+        border-bottom: 0.5pt solid black;
+        vertical-align: bottom;
+        margin-bottom: 10pt;
+    }
+}
+@page capitulo :right {
+    @top-right {
+        content: counter(page);
+        font-weight: bold;
+        padding-bottom: 5pt;
+        border-bottom: 0.5pt solid black;
+        vertical-align: bottom;
+        margin-bottom: 10pt;
+    }
+}
+@page capitulo :blank {
+    @top-left {
+        content: normal;
+    }
+}
+@page capitulo :blank {
+    @top-right {
+        content: normal;
+    }
+}
+body {
+    counter-reset: part chapter;
+    font-family: 'EB Garamond', serif;
+    font-size: 10pt;
+}
+section[data-type="chapter"] > h1::before, div[data-type="part"] > h1::before,
+section[data-type="sect1"] > h1::before, section[data-type="sect2"] > h2::before{
+    font-family: 'Copperplate', serif;
+}
+body > section, body > div {
+    page-break-before: right;
+}
+section[data-type="titlepage"] h1 {
+    margin-top: 5cm;
+    font-size: 32pt;
+    text-align: center;
+}
+section[data-type="titlepage"] p[data-type="author"] {
+    margin-top: 3cm;
+    font-size: 26pt;
+    font-style: italic;
+    text-align: center;
+    text-indent: 0;
+}
+section[data-type="titlepage"] > p {
+    margin-top: 3cm;
+    font-size: 18pt;
+    text-align: center;
+    text-indent: 0;
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+    counter-reset: section;
+}
+section[data-type="chapter"] > h1 {
+    font-size: 26pt;
+    string-set: chapter content();
+    margin-bottom: 5em;
+    margin-top: 5em;
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: 'CAPÍTULO ' counter(chapter, decimal) '\A';
+    font-size: 16pt;
+    white-space: pre;
+    background-color: #bbb;
+    color: white;
+    padding: 1em;
+    position: relative;
+    top: -3em;
+}
+p {
+    text-align: justify;
+    text-indent: 1.5em;
+    margin: 0 auto;
+    widows: 2;
+    orphans: 2;
+}
+section[data-type="sect1"] > h1 {
+    counter-reset: subsection;
+    font-size: 13pt;
+    string-set: sectionname content();
+}
+section[data-type="sect1"] > h1::before {
+    content: counter(chapter) "." counter(section);
+    counter-increment: section;
+    padding-right: 12pt;
+}
+section[data-type="sect2"] > h2 {
+    font-size: 10pt;    
+}
+section[data-type="sect2"] > h2::before {
+    content: counter(chapter) "." counter(section) "." counter(subsection);
+    counter-increment: subsection;
+    padding-right: 12pt;
+}
+span[data-type="footnote"] {
+    float: footnote;
+    counter-increment: footnote;
+    text-indent: 0;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    margin-left: 16pt;
+}
+span[data-type="footnote"]::footnote-call {
+    content: counter(footnote, decimal);
+    font-size: 8pt;
+    vertical-align: super;
+    line-height: none;
+}
+span[data-type="footnote"]::footnote-marker {
+    content: counter(footnote, decimal) ".";
+    padding-right: 8pt;
+}
+section[data-type="foreword"] {
+    margin-top: 50%;
+}

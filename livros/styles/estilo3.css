@@ -1,0 +1,110 @@
+@import 'https://fonts.googleapis.com/css?family=EB+Garamond';
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+}
+@page capitulo :first {
+    @top-left {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @top-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-right {
+        content: counter(page, decimal);
+    }
+}
+@page capitulo :left {
+    @top-left {
+        content: counter(page);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :left {
+    @top-right {
+        content: "Capítulo " counter(chapter);
+        vertical-align: bottom;        
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :right {
+    @top-left {
+        content: string(title);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :right {
+    @top-right {
+        content: counter(page);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :blank {
+    @top-left {
+        content: normal;
+    }
+}
+@page capitulo :blank {
+    @top-right {
+        content: normal;
+    }
+}
+body {
+    font-family: "Times New Roman", serif;
+    counter-reset: chapter;
+}
+section[data-type="titlepage"], section[data-type="chapter"] > h1::before {
+    font-family: 'EB Garamond', serif;
+}
+section[data-type="titlepage"] h1, section[data-type="titlepage"] p {
+    text-align: left;
+    font-weight: bold;
+    text-indent: 0;
+    margin-top: 2cm;
+    padding: 0.5cm;
+}
+section[data-type="titlepage"] h1 {
+    font-size: 36pt;
+    background-color: gray;
+    border-radius: 10pt;
+    color: white;
+    string-set: title content();
+}
+section[data-type="titlepage"] p[data-type="author"] {
+    font-size: 24pt;
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+    page-break-before: right;
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: 'CAPÍTULO ' counter(chapter, decimal) '\A';
+    font-size: 28pt;
+    white-space: pre;
+    background-color: gray;
+    color: white;
+    padding: 0.5cm;
+}
+section[data-type="chapter"] > h1 + p {
+    text-indent: 0;
+}
+p {
+    text-align: justify;
+    text-indent: 1cm;
+    widows: 2;
+    orphans: 2;
+}

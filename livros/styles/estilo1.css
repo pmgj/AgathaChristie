@@ -1,0 +1,114 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+}
+@page capitulo :first {
+    @top-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-center {
+        content: counter(page);
+    }
+}
+@page capitulo :left {
+    @top-left {
+        content: string(title);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :left {
+    @bottom-left {
+        content: counter(page);
+        margin-top: 2em;
+        vertical-align: top;
+        border-top: 0.5pt solid black;
+    }
+}
+@page capitulo :right {
+    @top-right {
+        content: "Capítulo " counter(chapter);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 0.5pt solid black;
+    }
+}
+@page capitulo :right {
+    @bottom-right {
+        content: counter(page);
+        text-align: right;
+        vertical-align: top;
+        margin-top: 2em;
+        border-top: 0.5pt solid black;
+    }
+}
+@page capitulo :blank {
+    @top-left {
+        content: normal;
+    }
+}
+@page capitulo :blank {
+    @bottom-left {
+        content: normal;
+    }
+}
+body {
+    font-family: "Times New Roman", serif;
+    counter-reset: chapter;
+}
+section[data-type="titlepage"] {
+    margin: auto;
+}
+section[data-type="titlepage"], section[data-type="chapter"] > h1::before {
+    font-family: "Ubuntu", serif;
+}
+section[data-type="titlepage"] h1, section[data-type="titlepage"] p {
+    text-align: center;
+    font-weight: bold;
+    text-indent: 0;
+    margin-top: 2cm;
+}
+section[data-type="titlepage"] h1 {
+    font-size: 36pt;
+    string-set: title content();
+}
+section[data-type="titlepage"] p[data-type="author"] {
+    font-size: 24pt;
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+    page-break-before: right;
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: counter(chapter, upper-roman) '\A';
+    white-space: pre;
+    font-size: 28pt;
+    padding: 1cm;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: black;
+}
+section[data-type="chapter"] > h1 {
+    position: relative;
+    padding-top: 4cm;
+}
+p {
+    text-align: justify;
+    widows: 2;
+    orphans: 2;
+    text-indent: 1cm;
+}

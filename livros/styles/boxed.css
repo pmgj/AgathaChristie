@@ -1,0 +1,283 @@
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+/*    @footnotes {
+        border-top: 0.5pt dashed black;
+        padding-top: 8pt;
+    }*/
+}
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+/*    @footnotes {
+        border-top: 0.5pt dashed black;
+        padding-top: 8pt;
+    }*/
+}
+@page capitulo :left {
+    @top-left {
+        content: string(title);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 1px solid black;
+    }
+}
+@page capitulo :left {
+    @bottom-left {
+        content: counter(page);
+        margin-top: 2em;
+        vertical-align: top;
+        border-top: 1px solid black;
+    }
+}
+
+@page capitulo :right {
+    @top-right {
+        content: "Capítulo " counter(chapter) " - " string(chapter);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+        border-bottom: 1px solid black;
+    }
+}
+@page capitulo :right {
+    @bottom-right {
+        content: counter(page);
+        text-align: right;
+        vertical-align: top;
+        margin-top: 2em;
+        border-top: 1px solid black;
+    }
+}
+@page capitulo :first {
+    @top-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-right {
+        content: normal;
+    }
+}
+@page capitulo :first {
+    @bottom-center {
+        content: counter(page);
+    }
+}
+
+@page frontmatter :left {
+    @top-left {
+        content: string(title);
+        vertical-align: bottom;
+        margin-bottom: 2em;
+    }
+}
+@page frontmatter :left {
+    @bottom-left {
+        content: counter(page, lower-roman);
+        margin-top: 2em;
+        vertical-align: top;
+    }
+}
+
+@page frontmatter :right {
+    @top-right {
+        content: string(header); 
+        vertical-align: bottom;
+        margin-bottom: 2em; 
+    }
+}
+@page frontmatter :right {
+    @bottom-right {
+        content: counter(page, lower-roman);
+        text-align: right;
+        vertical-align: top;
+        margin-top: 2em;
+    }
+}
+@page cover {
+    margin: 0; 
+}
+
+@page blank :left {
+    @top-left {
+        content: normal;
+    }
+}
+@page blank :left {
+    @bottom-left {
+        content: normal;
+    }
+}
+
+@page blank :right {
+    @top-right {
+        content: normal;
+    }
+}
+@page blank :right {
+    @bottom-right {
+        content: normal;
+    }
+}
+
+body {
+    font-family: "Times New Roman", serif;
+    counter-reset: chapter footnote part;
+    margin: 0 auto;
+}
+section[data-type="titlepage"] h1, section[data-type="titlepage"] p {
+    text-align: center;
+    font-weight: bold;
+    text-indent: 0;
+}
+section[data-type="titlepage"] p[data-type="subtitle"] {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 24pt;
+}
+section[data-type="titlepage"] {
+    page: cover;
+}
+section[data-type="titlepage"] h1 {
+    font-size: 36pt;
+    string-set: title content();
+    margin-top: 5cm;
+}
+section[data-type="titlepage"] p[data-type="author"] {
+    font-size: 24pt;
+    string-set: author content();
+    margin-top: 2cm;
+}
+section[data-type="titlepage"] p {
+    margin-top: 2cm;
+}
+section[data-type="foreword"] {
+    position: relative;
+}
+section[data-type="foreword"] h1 {
+    margin-bottom: 10em;
+}
+section[data-type="foreword"] p {
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+section[data-type="copyright-page"] {
+    font-size: 10pt;
+}
+section[data-type="copyright-page"] p {
+    text-align: center;
+    text-indent: 0;
+}
+section[data-type="copyright-page"] div, section[data-type="copyright-page"] h1 {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 1em; 
+    font-weight: normal;
+    margin-bottom: 0;
+}
+section[data-type="copyright-page"] div#ficha-catalografica {
+    margin-top: 12pt;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+section[data-type="preface"] {
+    page: frontmatter;
+}
+section[data-type="preface"] h1 {
+    string-set: header content();
+}
+section[data-type="preface"] blockquote[data-type="epigraph"] {
+    padding-top: 15cm;
+}
+section[data-type="preface"] blockquote[data-type="epigraph"] p {
+    text-align: right;
+}
+section[data-type="preface"] blockquote[data-type="epigraph"] p[data-type="attribution"] {
+    font-style: italic;
+}
+div[data-type="part"] {
+    counter-reset: chapter;
+}
+div[data-type="part"] > h1::before {
+    counter-increment: part;
+    content: "Parte " counter(part, decimal);    
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: counter(chapter, upper-roman) '\A';
+    white-space: pre;
+    font-size: 28pt;
+    padding: 1cm;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: black;
+}
+section[data-type="chapter"] > h1 {
+    position: relative;
+    margin-bottom: 1.5cm;
+    string-set: chapter content();
+    text-transform: uppercase;
+}
+p {
+    text-align: justify;
+    widows: 2;
+    orphans: 2;
+    margin: 0.1cm auto;
+    text-indent: 1cm;
+}
+body > section, div[data-type="part"], section[data-type="chapter"] {
+    page-break-before: right;
+}
+body > section h1, section[data-type="chapter"] h1 {
+    text-align: right;
+    font-size: 22pt;
+    padding-top: 4cm;
+    text-transform: uppercase;
+}
+section[data-type="bibliography"] p {
+    text-indent: 0;
+}
+span[data-type="footnote"] {
+    float: footnote;
+    counter-increment: footnote;
+    text-indent: 0;
+    font-size: small;
+    font-style: normal;
+    font-weight: normal;
+}
+span[data-type="footnote"]::footnote-call {
+    content: counter(footnote);
+    font-size: 8pt;
+    vertical-align: super;
+    line-height: none;
+}
+span[data-type="footnote"]::footnote-marker {
+    font-weight: bold;
+}
+blockquote {
+    font-style: italic;
+}
+table {
+    border-collapse: collapse;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+table td {
+    border-top: 1px solid black;
+}
+table tr:first-child td {
+    border-top: none;
+}
+section[data-type="endnote"] p {
+    text-indent: 0;
+}

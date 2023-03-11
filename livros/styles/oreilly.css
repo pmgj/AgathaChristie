@@ -1,0 +1,178 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+@import 'https://fonts.googleapis.com/css?family=Lora';
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+    font-family: "MyriadPro-SemiboldCond", "Ubuntu", sans-serif;
+/*    @footnotes {
+        padding-top: 8pt;
+        padding-bottom: 8pt;
+    }*/
+}
+@page capitulo :left {
+    @bottom-left {
+        padding-top: 5pt;
+        font-weight: bold;
+        border-top: 0.5pt solid black;
+        vertical-align: top;
+        content: counter(page) " | Capítulo " counter(chapter) ": " string(chapter);
+    }
+}
+@page capitulo :right {
+    @bottom-right {
+        padding-top: 5pt;
+        font-weight: bold;
+        border-top: 0.5pt solid black;
+        vertical-align: top;
+        content: string(sectionnum) " " string(section) " | " counter(page);
+    }
+}
+@page capitulo :first {
+    @bottom-right {
+        content: counter(page);
+    }
+}
+body {
+    counter-reset: chapter part;
+    font-family: "Birka", "Lora", serif;
+    font-size: 10pt;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "MyriadPro-SemiboldCond", "Ubuntu", sans-serif;
+}
+section[data-type="titlepage"] h1 {
+    border-top: 1pt solid black;
+    text-align: right;
+    margin-top: 3cm;
+    margin-bottom: 5cm;
+    font-size: 31.5pt;
+    padding-top: 5pt;
+}
+section[data-type="titlepage"] p[data-type="author"], section[data-type="titlepage"] p[data-type="subtitle"] {
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 5cm;
+    font-size: 15pt;
+}
+section[data-type="titlepage"] > p {
+    text-align: right;
+}
+body > section, section[data-type="chapter"], body > nav, body > div {
+    page-break-before: right;
+}
+section[data-type="part"] > h1, section[data-type="chapter"] > h1, body > nav > h1 {
+    border-top: 1pt solid black;
+    margin-top: 2cm;
+    margin-bottom: 5cm;
+    text-align: right;
+    font-size: 20pt;
+}
+section[data-type="foreword"] h1, section[data-type="copyright-page"] h1 {
+    border-top: none;
+}
+section[data-type="copyright-page"] h1 {
+    margin: 0;
+}
+p {
+    text-align: justify;
+    widows: 2;
+    orphans: 2;
+    margin: 0.4cm auto;
+}
+blockquote {
+    font-style: italic;
+}
+p[data-type="attribution"] {
+    font-style: normal;
+}
+section[data-type="part"] > h1 {
+    position: relative;
+    font-size: 28pt;
+    padding-top: 5pt;
+}
+section[data-type="part"] > h1::before {
+    counter-increment: part;
+    content: 'PARTE ' counter(part, upper-roman) '\A';
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: -20pt;
+    font-size: 18pt;
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+}
+section[data-type="chapter"] > h1 {
+    position: relative;
+    counter-reset: footnote h1;
+    font-size: 24pt;
+    padding-top: 5pt;
+    string-set: chapter content();
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: 'CAPÍTULO ' counter(chapter, decimal) '\A';
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: -20pt;
+    font-size: 16pt;
+}
+span[data-type="footnote"] {
+    float: footnote;
+    counter-increment: footnote;
+    text-indent: 0;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    margin-left: 16pt;
+}
+span[data-type="footnote"]::footnote-call {
+    content: counter(footnote, lower-latin);
+    font-size: 8pt;
+    vertical-align: super;
+    line-height: none;
+}
+span[data-type="footnote"]::footnote-marker {
+    content: counter(footnote, lower-alpha) ".";
+    padding-right: 8pt;
+}
+section[data-type="sect1"] h1 {
+    font-size: 18pt;
+    counter-increment: h1;
+    counter-reset: h2;
+    string-set: section content();
+}
+section[data-type="sect1"] h1::before {
+    content: counter(chapter) "." counter(h1);
+    string-set: sectionnum counter(chapter) "." counter(h1);
+    padding-right: 10pt;
+}
+section[data-type="sect2"] h2 {
+    font-size: 15pt;
+    counter-increment: h2;
+}
+section[data-type="sect2"] h2::before {
+    content: counter(chapter) "." counter(h1) "." counter(h2);
+    padding-right: 10pt;
+}
+section[data-type="copyright-page"] p {
+    text-align: center;
+    margin-top: 0;
+    font-size: 9pt;
+}
+section[data-type="copyright-page"] div {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 1em; 
+    font-weight: normal;
+    margin-bottom: 0;
+}
+section[data-type="copyright-page"] div#ficha-catalografica {
+    margin-top: 12pt;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}

@@ -1,0 +1,81 @@
+@import 'https://fonts.googleapis.com/css?family=Lora';
+@page {
+    size: A4;
+    margin: 2cm;
+    font-size: 9pt;
+}
+@page capitulo :first {
+    @bottom-right {
+        content: counter(page);
+    }
+}
+@page capitulo :left {
+    @bottom-left {
+        content: counter(page) " | Capítulo " counter(chapter);
+        vertical-align: top;
+        margin-top: 2em;
+        border-top: 0.5pt solid black;
+    }
+}
+@page capitulo :right {
+    @bottom-right {
+        content: string(author) " | " counter(page);
+        vertical-align: top;
+        margin-top: 2em;
+        border-top: 0.5pt solid black;
+    }
+}
+@page capitulo :blank {
+    @bottom-right {
+        content: normal;
+    }
+}
+@page capitulo :blank {
+    @bottom-left {
+        content: normal;
+    }
+}
+body {
+    font-family: "Times New Roman", serif;
+    counter-reset: chapter;
+}
+section[data-type="titlepage"], section[data-type="chapter"] > h1::before {
+    font-family: "Lora", sans-serif;
+}
+section[data-type="titlepage"] h1, section[data-type="titlepage"] p {
+    text-align: right;
+    font-weight: bold;
+    text-indent: 0;
+    margin-top: 2cm;
+}
+section[data-type="titlepage"] h1 {
+    font-size: 36pt;
+    border-top: 0.5pt solid black;
+}
+section[data-type="titlepage"] p[data-type="author"] {
+    font-size: 24pt;
+    string-set: author content();
+}
+section[data-type="chapter"] {
+    page: capitulo;
+    prince-page-group: start;
+    page-break-before: right;
+}
+section[data-type="chapter"] > h1::before {
+    counter-increment: chapter;
+    content: 'CAPÍTULO ' counter(chapter, decimal) '\A';
+    font-size: 28pt;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: -32pt;
+}
+section[data-type="chapter"] > h1 {
+    border-top: 0.5pt solid black;
+    position: relative;
+}
+p {
+    text-align: justify;
+    widows: 2;
+    orphans: 2;
+}
